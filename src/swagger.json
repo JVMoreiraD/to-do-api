@@ -56,6 +56,47 @@
                     }
                 }
             }
+        },
+        "/auth/singUp": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Faz cadastro de um usuário",
+                "description": "Recebe o email, senha e nome para efetuar o cadastro",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/requestCreateUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "400": {
+                        "description": "Email já em uso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Email já em uso"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -83,6 +124,25 @@
             },
             "example": {
                 "token": "XXXXXXXXX"
+            }
+        },
+        "requestCreateUser": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "name": "João",
+                "email": "jvitormoreirad@hotmail.com",
+                "password": "*******"
             }
         }
     },
