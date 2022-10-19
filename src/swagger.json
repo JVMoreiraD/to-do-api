@@ -97,6 +97,52 @@
                     }
                 }
             }
+        },
+        "/task": {
+            "post": {
+                "tags": [
+                    "task"
+                ],
+                "summary": "Faz cadastro de uma nova tarefa",
+                "description": "Recebe a descrição da nova tarefa e adiciona ela a lista de tarefas",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/requestTask"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "task"
+                ],
+                "summary": "Faz listagem das tarefas de um usuario",
+                "description": "Lista as tarefas de um usuario",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "id do usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -145,6 +191,21 @@
                 "name": "João",
                 "email": "jvitormoreirad@hotmail.com",
                 "password": "*******"
+            }
+        },
+        "requestTask": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "user_id": "id do usuario",
+                "description": "descrição da tarefa"
             }
         }
     },
