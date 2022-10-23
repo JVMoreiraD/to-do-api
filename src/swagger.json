@@ -142,6 +142,61 @@
                         "description": "Sucesso"
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "task"
+                ],
+                "summary": "Deleta uma tarefa",
+                "description": "Deleta uma tarefa selecionada pelo id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id da tarefa",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "task"
+                ],
+                "summary": "Altera o status de uma tarefa",
+                "description": "Marca uma tarefa como completa ou incompleta",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id da tarefa",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/patchTask"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
             }
         }
     },
@@ -206,6 +261,17 @@
             "example": {
                 "user_id": "id do usuario",
                 "description": "descrição da tarefa"
+            }
+        },
+        "patchTask": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "boolean"
+                }
+            },
+            "example": {
+                "status": true
             }
         }
     },
