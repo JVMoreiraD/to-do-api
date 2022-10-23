@@ -7,6 +7,7 @@ import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { AppError } from "@shared/errors/AppError";
 
 interface IResponse {
+    user_id: string;
     token: string;
 }
 class AuthenticateUserUseCase {
@@ -28,6 +29,7 @@ class AuthenticateUserUseCase {
         });
 
         const response: IResponse = {
+            user_id: userExists.id,
             token: `${token}`,
         };
         return response;
